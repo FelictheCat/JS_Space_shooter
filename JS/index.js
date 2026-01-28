@@ -23,7 +23,7 @@ const gameBoxNode = document.querySelector("#game-box")
 
 let shipObj = null
 let obstacleobj = []
-let asteriodObj = null
+let asteriodObj = [] //turn to array
 let planetObj = []
 
 let frameCounter = 0
@@ -37,17 +37,13 @@ function startGame() {
     gameScreenNode.style.display = "flex"
 
     shipObj = new Ship()
-    asteriodObj = new Asteriod()
-    planetObj = new Planet()
-
-
-
+    
     setInterval(gameLoop, Math.round(1000/60))
 }
 
 function gameLoop(){
     frameCounter++
-
+    // obs spawn
     if (frameCounter % 120 === 0){
         let gapSize = 160
         let minHeight = -120
@@ -62,11 +58,11 @@ function gameLoop(){
         obstacleobj.push(topObstacle)
         obstacleobj.push(bottomObstacle)
     }
-
     obstacleobj.forEach(objs => {
         objs.automaticMovement()
 
     });
+        // background planet spawn
 
     if (frameCounter % 300 === 0){
         let minHeight = -120
@@ -77,11 +73,42 @@ function gameLoop(){
 
         planetObj.push(newPlanet)
     }
-
     planetObj.forEach(objs => {
         objs.automaticMovement()
 
     });
+
+    // for asteriod each size different interavals
+    // asteriod planet spawn
+
+    if (frameCounter % 240 === 0){
+        const spawnRandom = Math.floor(Math.random() * 3)
+        let positionX
+        let positionY
+        let asteriod
+
+        if (spawnRandom === 0){
+            positionX = 600 + 100
+            positionY = Math.random() * (600 * 0.3)
+            asteriod = new AsteriodLargeRight(positionX, positionY)
+        }
+
+        if (spawnRandom === 1){
+            positionX = Math.random() * (600 * 0.3)
+            positionY = -100
+            asteriod = new AsteriodLargeTop(positionX, positionY)
+        }
+
+        if (spawnRandom === 2){
+            positionX = Math.random() * (600 * 0.3)
+            positionY = 400 + 100
+            asteriod = new AsteriodLargeBottom(positionX, positionY)
+        }
+        
+        asteriodObj.push(asteriod)
+
+    }
+
 
 
 
@@ -92,7 +119,7 @@ function gameLoop(){
 
 
 
-
+console.log("ASTEROID SPAWN:", positionX, positionY)
 
 
 

@@ -5,9 +5,9 @@ class Obstacle {
     this.node = document.createElement("img");
 
     if (isImageUp === true) {
-      this.DOMElement.src = "./Images/Obstacle/Obstacle_tall_bottom.png";
+      this.node.src = "./Images/Obstacle/Obstacle_tall_bottom.png";
     } else {
-      this.DOMElement.src = "./Images/Obstacle/Obstacle_tall_top.png";
+      this.node.src = "./Images/Obstacle/Obstacle_tall_top.png";
     }
 
     gameBoxNode.append(this.DOMElement);
@@ -24,12 +24,12 @@ class Obstacle {
     this.node.style.top = `${this.y}px`;
     this.node.style.left = `${this.x}px`;
 
-    this.node.style.zIndex = 5
+    // this.node.style.zIndex = 5
   }
 
   automaticMovement(){
     this.x -= this.speed;
-    this.DOMElement.style.left = `${this.x}px`;
+    this.node.style.left = `${this.x}px`;
   }
 
 }

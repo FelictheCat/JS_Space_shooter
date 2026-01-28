@@ -3,8 +3,28 @@ class Planet {
   constructor(positionY) {
 
     this.node = document.createElement("img")
-    this.node.src = "./images/Planets/planet_27"
+    const planetImages = [
+        "./Images/Planets/planet_18.png",
+        "./Images/Planets/planet_19.png",
+        "./Images/Planets/planet_20.png",
+        "./Images/Planets/planet_21.png",
+        "./Images/Planets/planet_22.png",
+        "./Images/Planets/planet_23.png",
+        "./Images/Planets/planet_24.png",
+        "./Images/Planets/planet_25.png",
+        "./Images/Planets/planet_26.png",
+        "./Images/Planets/planet_27.png",
+        "./Images/Planets/planet_28.png",
+        "./Images/Planets/planet_29.png",
+        "./Images/Planets/planet_30.png",
+        "./Images/Planets/planet_31.png",
+        "./Images/Planets/planet_32.png",
+        "./Images/Planets/planet_33.png"
+                        ]
 
+
+    this.node = document.createElement("img")
+    this.node.src = planetImages[Math.floor(Math.random() * planetImages.length)]
     gameBoxNode.append(this.node)
 
     this.x = 500
@@ -20,7 +40,7 @@ class Planet {
 
     this.speed = 1.8
 
-    this.node.style.zIndex = 3
+    // this.node.style.zIndex = 3
 
   }
 

@@ -17,7 +17,7 @@ class Ship{
     this.node.style.width = `${this.width}px`
     this.node.style.height = `${this.height}px`
 
-    this.node.style.zIndex = 10
+    // this.node.style.zIndex = 10
 
     this.movemet = 20
     }
