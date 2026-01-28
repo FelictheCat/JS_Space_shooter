@@ -1,5 +1,15 @@
 // Dom elements
+/*
+z index 
 
+background = 1
+ship = 10
+obstacles  = 5
+planets = 3
+asteriods = 8
+
+
+*/
 const startScreenNode = document.querySelector("#start-screen")
 const gameScreenNode = document.querySelector("#game-screen")
 const gameOverScreen = document.querySelector("#game-over-screen")
@@ -12,9 +22,11 @@ const gameBoxNode = document.querySelector("#game-box")
 //game variables
 
 let shipObj = null
-let obstacleobj = null
+let obstacleobj = []
 let asteriodObj = null
-let planetObj = null
+let planetObj = []
+
+let frameCounter = 0
 
 // let lazerObj = null
 
@@ -25,7 +37,6 @@ function startGame() {
     gameScreenNode.style.display = "flex"
 
     shipObj = new Ship()
-    obstacleobj = new Obstacle()
     asteriodObj = new Asteriod()
     planetObj = new Planet()
 
@@ -35,8 +46,47 @@ function startGame() {
 }
 
 function gameLoop(){
+    frameCounter++
+
+    if (frameCounter % 120 === 0){
+        let gapSize = 160
+        let minHeight = -120
+        let maxHeight = 0
+
+        let randomObjY = Math.floor(Math.random() * (maxHeight - minHeight) + minHeight)
+        
+        let topObstacle = new Obstacle(randomObjY, false);
+
+        let bottomObstacle  = new Obstacle(randomObjY + 200 + gapSize, true)
+
+        obstacleobj.push(topObstacle)
+        obstacleobj.push(bottomObstacle)
+    }
+
+    obstacleobj.forEach(objs => {
+        objs.automaticMovement()
+
+    });
+
+    if (frameCounter % 300 === 0){
+        let minHeight = -120
+        let maxHeight = 0
+        let randomPlanetY = Math.floor(Math.random() * (maxHeight - minHeight) + minHeight)
+        
+        let newPlanet = new Planet(randomPlanetY);
+
+        planetObj.push(newPlanet)
+    }
+
+    planetObj.forEach(objs => {
+        objs.automaticMovement()
+
+    });
+
+
 
 }
+
 
 
 
@@ -79,7 +129,7 @@ document.addEventListener("keydown", (event) =>{
      }
 })
 document.addEventListener("keydown", (event) =>{
-    if (event.key === "Arrowleft"){
+    if (event.key === "ArrowLeft"){
            shipObj.flyLeft()
      }
 })
@@ -89,5 +139,5 @@ document.addEventListener("keydown", (event) =>{
      }
 })
 
-console.log(KeyboardEvent)
+// console.log(KeyboardEvent)
 

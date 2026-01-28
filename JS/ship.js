@@ -2,7 +2,7 @@ class Ship{
 
     constructor(){
     this.node = document.createElement("img")
-    this.node.src = "./Images/Fighter/fighterspr1.png"
+    this.node.src = "./Images/Fighter/topdownfighter.png"
 
     gameBoxNode.append(this.node)
 
@@ -17,6 +17,8 @@ class Ship{
     this.node.style.width = `${this.width}px`
     this.node.style.height = `${this.height}px`
 
+    this.node.style.zIndex = 10
+
     this.movemet = 20
     }
 
@@ -28,27 +30,23 @@ class Ship{
     }
 
     flyDown(){
-        if(this.y > 1){
+        if(this.y < 400 - this.height){
         this.y += this.movemet
         this.node.style.top = `${this.y}px`
         }
     }
 
     flyLeft(){
-        if(this.x < 1){
+        if(this.x > 1){
         this.x -= this.movemet
         this.node.style.left = `${this.x}px`
         }
     }
 
     flyRight(){
-        if(this.x > 1){
+        if(this.x < 600 - this.width ){
         this.x += this.movemet
         this.node.style.left = `${this.x}px`
         }
     }
-
-
-
-
 }
