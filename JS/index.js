@@ -118,21 +118,6 @@ function gameLoop(){
 
 
 
-
-console.log("ASTEROID SPAWN:", positionX, positionY)
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Event listeners
 
 
