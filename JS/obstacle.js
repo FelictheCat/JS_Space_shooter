@@ -10,7 +10,7 @@ class Obstacle {
       this.node.src = "./Images/Obstacle/Obstacle_tall_top.png";
     }
 
-    gameBoxNode.append(this.DOMElement);
+    gameBoxNode.append(this.node);
 
     this.x = 600;
     this.y = positionY;
@@ -24,7 +24,7 @@ class Obstacle {
     this.node.style.top = `${this.y}px`;
     this.node.style.left = `${this.x}px`;
 
-    // this.node.style.zIndex = 5
+    this.node.style.zIndex = 5
   }
 
   automaticMovement(){

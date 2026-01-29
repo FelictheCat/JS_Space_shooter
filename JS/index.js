@@ -65,8 +65,8 @@ function gameLoop(){
         // background planet spawn
 
     if (frameCounter % 300 === 0){
-        let minHeight = -120
-        let maxHeight = 0
+        let minHeight = 400*0.25
+        let maxHeight = 400*0.75
         let randomPlanetY = Math.floor(Math.random() * (maxHeight - minHeight) + minHeight)
         
         let newPlanet = new Planet(randomPlanetY);
@@ -90,25 +90,61 @@ function gameLoop(){
         if (spawnRandom === 0){
             positionX = 600 + 100
             positionY = Math.random() * (600 * 0.3)
-            asteriod = new AsteriodLargeRight(positionX, positionY)
+            asteriod = new AsteriodMediumRight(positionX, positionY)
         }
 
         if (spawnRandom === 1){
-            positionX = Math.random() * (600 * 0.3)
+            positionX = Math.random() * (600 * 0.7)
             positionY = -100
-            asteriod = new AsteriodLargeTop(positionX, positionY)
+            asteriod = new AsteriodMediumTop(positionX, positionY)
         }
 
         if (spawnRandom === 2){
-            positionX = Math.random() * (600 * 0.3)
+            positionX = Math.random() * (600 * 0.7)
             positionY = 400 + 100
-            asteriod = new AsteriodLargeBottom(positionX, positionY)
+            asteriod = new AsteriodMediumBottom(positionX, positionY)
         }
         
         asteriodObj.push(asteriod)
+        
 
     }
+    asteriodObj.forEach(obj => {
+        obj.automaticMovement()
+    })
 
+    
+    if (frameCounter % 240 === 0){
+        const spawnRandom = Math.floor(Math.random() * 3)
+        let positionX
+        let positionY
+        let asteriod
+
+        if (spawnRandom === 0){
+            positionX = 600 + 100
+            positionY = Math.random() * (600 * 0.3)
+            asteriod = new AsteriodSmallRight(positionX, positionY)
+        }
+
+        if (spawnRandom === 1){
+            positionX = Math.random() * (600 * 0.7)
+            positionY = -100
+            asteriod = new AsteriodSmallTop(positionX, positionY)
+        }
+
+        if (spawnRandom === 2){
+            positionX = Math.random() * (600 * 0.7)
+            positionY = 400 + 100
+            asteriod = new AsteriodSmallBottom(positionX, positionY)
+        }
+        
+        asteriodObj.push(asteriod)
+        
+
+    }
+    asteriodObj.forEach(obj => {
+        obj.automaticMovement()
+    })
 
 
 

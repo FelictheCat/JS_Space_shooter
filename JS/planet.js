@@ -33,6 +33,7 @@ class Planet {
     this.height = 50
 
     this.node.style.position = "absolute"
+    this.node.style.opacity = "0.35"
     this.node.style.top = `${this.y}px`
     this.node.style.left = `${this.x}px`
     this.node.style.width = `${this.width}px`
@@ -40,7 +41,7 @@ class Planet {
 
     this.speed = 1.8
 
-    // this.node.style.zIndex = 3
+    this.node.style.zIndex = 3
 
   }
 
