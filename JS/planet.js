@@ -1,8 +1,3 @@
-class Planet {
-
-  constructor(positionY) {
-
-    this.node = document.createElement("img")
     const planetImages = [
         "./Images/Planets/planet_18.png",
         "./Images/Planets/planet_19.png",
@@ -22,6 +17,12 @@ class Planet {
         "./Images/Planets/planet_33.png"
                         ]
 
+
+class Planet {
+
+  constructor(positionY) {
+
+    this.node = document.createElement("img")
 
     this.node = document.createElement("img")
     this.node.src = planetImages[Math.floor(Math.random() * planetImages.length)]

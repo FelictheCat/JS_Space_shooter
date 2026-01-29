@@ -1,39 +1,39 @@
 const asteriodsImages = [
-        "./Images/Asteriods/Medium/a10000.png",
-        "./Images/Asteriods/Medium/a10001.png",
-        "./Images/Asteriods/Medium/a10002.png",
-        "./Images/Asteriods/Medium/a10003.png",
-        "./Images/Asteriods/Medium/a10004.png",
-        "./Images/Asteriods/Medium/a10005.png",
-        "./Images/Asteriods/Medium/a10006.png",
-        "./Images/Asteriods/Medium/a10007.png",
-        "./Images/Asteriods/Medium/a10008.png",
-        "./Images/Asteriods/Medium/a10009.png",
-        "./Images/Asteriods/Medium/a10010.png",
-        "./Images/Asteriods/Medium/a10011.png",
-        "./Images/Asteriods/Medium/a10012.png",
-        "./Images/Asteriods/Medium/a10013.png",
-        "./Images/Asteriods/Medium/a10014.png",
-        "./Images/Asteriods/Medium/a10015.png",
+        "./Images/Asteroids/Medium/a10000.png",
+        "./Images/Asteroids/Medium/a10001.png",
+        "./Images/Asteroids/Medium/a10002.png",
+        "./Images/Asteroids/Medium/a10003.png",
+        "./Images/Asteroids/Medium/a10004.png",
+        "./Images/Asteroids/Medium/a10005.png",
+        "./Images/Asteroids/Medium/a10006.png",
+        "./Images/Asteroids/Medium/a10007.png",
+        "./Images/Asteroids/Medium/a10008.png",
+        "./Images/Asteroids/Medium/a10009.png",
+        "./Images/Asteroids/Medium/a10010.png",
+        "./Images/Asteroids/Medium/a10011.png",
+        "./Images/Asteroids/Medium/a10012.png",
+        "./Images/Asteroids/Medium/a10013.png",
+        "./Images/Asteroids/Medium/a10014.png",
+        "./Images/Asteroids/Medium/a10015.png",
       ]
 
 const asteriodsSmallImages = [
-        "./Images/Asteriods/Small/a10000.png",
-        "./Images/Asteriods/Small/a10001.png",
-        "./Images/Asteriods/Small/a10002.png",
-        "./Images/Asteriods/Small/a10003.png",
-        "./Images/Asteriods/Small/a10004.png",
-        "./Images/Asteriods/Small/a10005.png",
-        "./Images/Asteriods/Small/a10006.png",
-        "./Images/Asteriods/Small/a10007.png",
-        "./Images/Asteriods/Small/a10008.png",
-        "./Images/Asteriods/Small/a10009.png",
-        "./Images/Asteriods/Small/a10010.png",
-        "./Images/Asteriods/Small/a10011.png",
-        "./Images/Asteriods/Small/a10012.png",
-        "./Images/Asteriods/Small/a10013.png",
-        "./Images/Asteriods/Small/a10014.png",
-        "./Images/Asteriods/Small/a10015.png",
+        "./Images/Asteroids/Small/a10000.png",
+        "./Images/Asteroids/Small/a10001.png",
+        "./Images/Asteroids/Small/a10002.png",
+        "./Images/Asteroids/Small/a10003.png",
+        "./Images/Asteroids/Small/a10004.png",
+        "./Images/Asteroids/Small/a10005.png",
+        "./Images/Asteroids/Small/a10006.png",
+        "./Images/Asteroids/Small/a10007.png",
+        "./Images/Asteroids/Small/a10008.png",
+        "./Images/Asteroids/Small/a10009.png",
+        "./Images/Asteroids/Small/a10010.png",
+        "./Images/Asteroids/Small/a10011.png",
+        "./Images/Asteroids/Small/a10012.png",
+        "./Images/Asteroids/Small/a10013.png",
+        "./Images/Asteroids/Small/a10014.png",
+        "./Images/Asteroids/Small/a10015.png",
       ]
 
 class AsteriodMediumRight {
@@ -45,14 +45,14 @@ class AsteriodMediumRight {
 
     this.x = positionX
     this.y = positionY
-    this.width = 120
-    this.height = 120
+    this.w = 120
+    this.h = 120
 
     this.node.style.position = "absolute"
     this.node.style.top = `${this.y}px`
     this.node.style.left = `${this.x}px`
-    this.node.style.width = `${this.width}px`
-    this.node.style.height = `${this.height}px`
+    this.node.style.width = `${this.w}px`
+    this.node.style.height = `${this.h}px`
 
     this.speed = 1.1
 
@@ -76,14 +76,14 @@ class AsteriodMediumTop {
 
     this.x = positionX
     this.y = positionY
-    this.width = 120
-    this.height = 120
+    this.w = 120
+    this.h = 120
 
     this.node.style.position = "absolute"
     this.node.style.top = `${this.y}px`
     this.node.style.left = `${this.x}px`
-    this.node.style.width = `${this.width}px`
-    this.node.style.height = `${this.height}px`
+    this.node.style.width = `${this.w}px`
+    this.node.style.height = `${this.h}px`
 
     this.speed = 1.1
 
@@ -110,14 +110,14 @@ class AsteriodMediumBottom {
 
     this.x = positionX
     this.y = positionY
-    this.width = 120
-    this.height = 120
+    this.w = 120
+    this.h = 120
 
     this.node.style.position = "absolute"
     this.node.style.top = `${this.y}px`
     this.node.style.left = `${this.x}px`
-    this.node.style.width = `${this.width}px`
-    this.node.style.height = `${this.height}px`
+    this.node.style.width = `${this.w}px`
+    this.node.style.height = `${this.h}px`
 
     this.speed = 1.1
 
@@ -145,14 +145,14 @@ class AsteriodSmallRight {
 
     this.x = positionX
     this.y = positionY
-    this.width = 64
-    this.height = 64
+    this.w = 64
+    this.h = 64
 
     this.node.style.position = "absolute"
     this.node.style.top = `${this.y}px`
     this.node.style.left = `${this.x}px`
-    this.node.style.width = `${this.width}px`
-    this.node.style.height = `${this.height}px`
+    this.node.style.width = `${this.w}px`
+    this.node.style.height = `${this.h}px`
 
     this.speed = 1.1
 
@@ -176,14 +176,14 @@ class AsteriodSmallTop {
 
     this.x = positionX
     this.y = positionY
-    this.width = 64
-    this.height = 64
+    this.w = 64
+    this.h = 64
 
     this.node.style.position = "absolute"
     this.node.style.top = `${this.y}px`
     this.node.style.left = `${this.x}px`
-    this.node.style.width = `${this.width}px`
-    this.node.style.height = `${this.height}px`
+    this.node.style.width = `${this.w}px`
+    this.node.style.height = `${this.h}px`
 
     this.speed = 1.1
 
@@ -210,14 +210,14 @@ class AsteriodSmallBottom {
 
     this.x = positionX
     this.y = positionY
-    this.width = 64
-    this.height = 64
+    this.w = 64
+    this.h = 64
 
     this.node.style.position = "absolute"
     this.node.style.top = `${this.y}px`
     this.node.style.left = `${this.x}px`
-    this.node.style.width = `${this.width}px`
-    this.node.style.height = `${this.height}px`
+    this.node.style.width = `${this.w}px`
+    this.node.style.height = `${this.h}px`
 
     this.speed = 1.1
 

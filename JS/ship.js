@@ -8,14 +8,14 @@ class Ship{
 
     this.x = 100
     this.y = 300
-    this.width = 40
-    this.height = 35
+    this.w = 40
+    this.h = 35
 
     this.node.style.position = "absolute"
     this.node.style.top = `${this.y}px`
     this.node.style.left = `${this.x}px`
-    this.node.style.width = `${this.width}px`
-    this.node.style.height = `${this.height}px`
+    this.node.style.width = `${this.w}px`
+    this.node.style.height = `${this.h}px`
 
     this.node.style.zIndex = 10
 
@@ -30,7 +30,7 @@ class Ship{
     }
 
     flyDown(){
-        if(this.y < 400 - this.height){
+        if(this.y < 400 - this.h){
         this.y += this.movemet
         this.node.style.top = `${this.y}px`
         }
@@ -44,7 +44,7 @@ class Ship{
     }
 
     flyRight(){
-        if(this.x < 600 - this.width ){
+        if(this.x < 600 - this.w ){
         this.x += this.movemet
         this.node.style.left = `${this.x}px`
         }

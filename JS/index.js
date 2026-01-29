@@ -25,6 +25,7 @@ let shipObj = null
 let obstacleobj = []
 let asteriodObj = [] //turn to array
 let planetObj = []
+let lazerObj = []
 
 let frameCounter = 0
 
@@ -32,6 +33,57 @@ let frameCounter = 0
 
 
 //game functions
+
+// can i make a golbal collision check? makes more sense - will check google
+// yes i can will look very basic - but will help me also code is the bullet collison easier
+
+
+function checkCollison(objA, objB){
+    if(
+        objA.x < objB.x + objB.w &&
+        objA.x + objA.w > objB.x &&
+        objA.y < objB.y + objB.h &&
+        objA.y + objA.h > objB.y
+    ) {
+    return true;
+    }   else {
+        return false
+    }}
+
+
+function shipVsAsteriod(){
+    asteriodObj.forEach(asteriod => {
+        if (checkCollison(shipObj, asteriod)){
+            console.log("hit A")
+            gameOver()
+        }
+    })
+}
+
+
+function shipVsObstacle(){
+    obstacleobj.forEach(obstacle =>{
+        if (checkCollison(shipObj, obstacle)){
+            gameOver()
+        }
+    })
+}
+
+function shootLazer(){
+    if (!shipObj)return
+    const lazerX = shipObj.x + shipObj.w
+    const lazerY = shipObj.y + shipObj.h/2
+
+    const lazer = new Lazer(positionX, positionY)
+    lazerObj.push(lazer)
+}
+
+// for bullet collsion get asteriod to turn in do display none then work out how to display explosion? 
+// or code the explosion into true/false in the asteriod Class builder
+
+
+
+
 function startGame() {
     startScreenNode.style.display = "none"
     gameScreenNode.style.display = "flex"
@@ -113,8 +165,8 @@ function gameLoop(){
         obj.automaticMovement()
     })
 
-    
-    if (frameCounter % 240 === 0){
+
+    if (frameCounter % 120== 0){
         const spawnRandom = Math.floor(Math.random() * 3)
         let positionX
         let positionY
@@ -144,12 +196,27 @@ function gameLoop(){
     }
     asteriodObj.forEach(obj => {
         obj.automaticMovement()
-    })
+    });
+
+
+    lazerObj.forEach(obj => {
+        obj.automaticMovement()
+        });
+
+    shipVsAsteriod()
+    shipVsObstacle()
 
 
 
 }
 
+
+function gameOver(){
+    startScreenNode.style.display = "none"
+    gameScreenNode.style.display = "none"
+    gameOverScreen.style.display = "flex"
+    
+}
 
 
 
@@ -186,6 +253,15 @@ document.addEventListener("keydown", (event) =>{
            shipObj.flyRight()
      }
 })
+
+document.addEventListener("keydown", (event) =>{
+    if (event.key === "Space"){
+        shootLazer()
+    }
+})
+
+// add eventkey for R to restart state 
+
 
 // console.log(KeyboardEvent)
 
