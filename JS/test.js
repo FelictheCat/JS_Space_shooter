@@ -82,3 +82,76 @@ document.addEventListener("keydown", (event) =>{
 
         startGame()
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // for bullet collsion get asteriod to turn in do display none then work out how to display explosion? 
+// or code the explosion into true/false in the asteriod Class builder
+
+function lazerVsSteriod(){
+        asteriodObj.forEach((asteriod, index) => {
+        if (checkCollison(lazerObj, asteriod)){
+        }
+    })
+}
+
+const explosionImage = [
+        "./Images/Explosions/expl_10_0011.png",
+        "./Images/Explosions/expl_10_0018.png",
+        "./Images/Explosions/expl_10_0025.png",
+        "./Images/Explosions/expl_11_0016.png",
+        "./Images/Explosions/expl_11_0022.png",       
+      ]
+
+class AsteriodMediumRight {
+
+  constructor(positionX, positionY) {
+    if (lazerVsSteriod() === false){
+    this.node = document.createElement("img")
+    this.node.src = asteriodsImages[Math.floor(Math.random() * asteriodsImages.length)]
+    gameBoxNode.append(this.node)
+
+    this.x = positionX
+    this.y = positionY
+    this.w = 120
+    this.h = 120
+
+    this.node.style.position = "absolute"
+    this.node.style.top = `${this.y}px`
+    this.node.style.left = `${this.x}px`
+    this.node.style.width = `${this.w}px`
+    this.node.style.height = `${this.h}px`
+
+    this.speed = 1.1
+
+    this.node.style.zIndex = 3
+
+  } else{
+    this.node = document.createElement("img")
+    this.node.src = explosionImage[Math.floor(Math.random() * explosionImage.length)]
+    gameBoxNode.append(this.node)
+
+    setTimeout(() => {
+        removeObject(obj);
+            }, 3000);
+
+}
+}
+
+automaticMovement() {
+    this.x -= this.speed
+    this.node.style.left = `${this.x}px`
+  }
+
+}
+

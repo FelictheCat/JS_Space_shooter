@@ -4,6 +4,7 @@ z index
 
 background = 1
 ship = 10
+lazer = 9
 obstacles  = 5
 planets = 3
 asteriods = 8
@@ -54,7 +55,6 @@ function checkCollison(objA, objB){
 function shipVsAsteriod(){
     asteriodObj.forEach(asteriod => {
         if (checkCollison(shipObj, asteriod)){
-            console.log("hit A")
             gameOver()
         }
     })
@@ -69,13 +69,23 @@ function shipVsObstacle(){
     })
 }
 
+function lazerVsSteriod(){
+        asteriodObj.forEach(asteriod => {
+        if (checkCollison(lazerObj, asteriod)){
+        }
+    })
+}
+
+
+
 function shootLazer(){
     if (!shipObj)return
     const positionX = shipObj.x + shipObj.w
-    const positionY = shipObj.y + shipObj.h/2
+    const positionY = shipObj.y + shipObj.h/2  
 
     const lazer = new Lazer(positionX, positionY)
     lazerObj.push(lazer)
+    console.log(lazer.node)
 }
 
 // for bullet collsion get asteriod to turn in do display none then work out how to display explosion? 
@@ -216,6 +226,7 @@ function gameOver(){
     gameScreenNode.style.display = "none"
     gameOverScreen.style.display = "flex"
     
+    
 }
 
 
@@ -226,6 +237,10 @@ function restartGame() {
       planetObj = []
       lazerObj = []
       frameCounter = 0
+      gameBoxNode.innerHTML = null
+
+    //   const gameBoxNode = document.querySelector("#game-box")
+
 
       startGame()
 };
@@ -273,11 +288,11 @@ document.addEventListener("keydown", (event) =>{
 // add eventkey for R to restart state 
 restartBtnNode.addEventListener("click", restartGame);
 
-document.addEventListener("keydown", (event) =>{
-    if (event.key === "r"){
-          restartGame()
-     }
-})
+// document.addEventListener("keydown", (event) =>{
+//     if (event.key === "r"){
+//           restartGame()
+//      }
+// })
 
 document.addEventListener("keydown", (event) => {
   console.log(event);

@@ -2,6 +2,7 @@ class Lazer{
     constructor(positionX, positionY) {
     this.node = document.createElement("img")
     this.node.src = "./Images/sprite_45.png"
+     gameBoxNode.append(this.node)
 
     this.x = positionX
     this.y = positionY
@@ -21,7 +22,7 @@ class Lazer{
   }
 
 automaticMovement() {
-    this.x -= this.speed
+    this.x += this.speed
     this.node.style.left = `${this.x}px`
   }
 

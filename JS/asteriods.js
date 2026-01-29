@@ -36,6 +36,9 @@ const asteriodsSmallImages = [
         "./Images/Asteroids/Small/a10015.png",
       ]
 
+
+
+      
 class AsteriodMediumRight {
 
   constructor(positionX, positionY) {
