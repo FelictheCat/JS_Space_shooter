@@ -1,7 +1,7 @@
 class Lazer{
     constructor(positionX, positionY) {
     this.node = document.createElement("img")
-    this.node.src = "./Iages/sprite_45.png"
+    this.node.src = "./Images/sprite_45.png"
 
     this.x = positionX
     this.y = positionY

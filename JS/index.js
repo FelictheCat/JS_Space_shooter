@@ -71,8 +71,8 @@ function shipVsObstacle(){
 
 function shootLazer(){
     if (!shipObj)return
-    const lazerX = shipObj.x + shipObj.w
-    const lazerY = shipObj.y + shipObj.h/2
+    const positionX = shipObj.x + shipObj.w
+    const positionY = shipObj.y + shipObj.h/2
 
     const lazer = new Lazer(positionX, positionY)
     lazerObj.push(lazer)
@@ -219,6 +219,16 @@ function gameOver(){
 }
 
 
+function restartGame() {
+      shipObj = null
+      obstacleobj = []
+      asteriodObj = []
+      planetObj = []
+      lazerObj = []
+      frameCounter = 0
+
+      startGame()
+};
 
 
 // Event listeners
@@ -255,13 +265,20 @@ document.addEventListener("keydown", (event) =>{
 })
 
 document.addEventListener("keydown", (event) =>{
-    if (event.key === "Space"){
+    if (event.code === "Space"){
         shootLazer()
     }
 })
 
 // add eventkey for R to restart state 
+restartBtnNode.addEventListener("click", restartGame);
 
+document.addEventListener("keydown", (event) =>{
+    if (event.key === "r"){
+          restartGame()
+     }
+})
 
-// console.log(KeyboardEvent)
-
+document.addEventListener("keydown", (event) => {
+  console.log(event);
+});

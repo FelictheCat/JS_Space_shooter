@@ -61,3 +61,24 @@ function shipVsAsteriod(){
         }
     })
 }
+
+
+
+
+restartBtnNode.addEventListener("click", restartGame);
+document.addEventListener("keydown", (event) =>{
+    if (event.key === "R"){
+          restartGame()
+     }
+})
+
+  function restartGame() {
+        let shipObj = null
+        let obstacleobj = []
+        let asteriodObj = [] //turn to array
+        let planetObj = []
+        let lazerObj = []
+        let frameCounter = 0
+
+        startGame()
+  };
