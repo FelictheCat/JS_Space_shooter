@@ -1,16 +1,5 @@
 // Dom elements
-/*
-z index 
 
-background = 1
-ship = 10
-lazer = 9
-obstacles  = 5
-planets = 3
-asteriods = 8
-
-
-*/
 const startScreenNode = document.querySelector("#start-screen")
 const gameScreenNode = document.querySelector("#game-screen")
 const gameOverScreen = document.querySelector("#game-over-screen")
@@ -20,33 +9,31 @@ const restartBtnNode = document.querySelector("#restartBtn")
 
 const gameBoxNode = document.querySelector("#game-box")
 
+const damageFlashNode = document.querySelector("#damageFlash")
+
 //game variables
 
 let shipObj = null
-let obstacleobj = []
-let asteriodObj = [] //turn to array
-let planetObj = []
-let lazerObj = []
+let obstacleArr = []
+let asteriodArr = [] 
+let planetArr = []
+let lazerArr = []
 let healthBar = []
 
 let frameCounter = 0
 
-// let lazerObj = null
+let gameInterval = null;
 
 
 //game functions
-
-// can i make a golbal collision check? makes more sense - will check google
-// yes i can will look very basic - but will help me also code is the bullet collison easier
-
 
 function checkCollison(objA, objB){
       if (objA.isDestroyed || objB.isDestroyed) {
     return false;
   }
 
-    const padA = 20
-    const padB = 10
+    const padA = objA.w * 0.2
+    const padB = objB.w * 0.15
 
     if(
         objA.x + padA < objB.x + objB.w - padB &&
@@ -57,14 +44,16 @@ function checkCollison(objA, objB){
     return true;
     }   else {
         return false
-    }}
-
+    }
+}
 
 function shipVsAsteriod(){
-    asteriodObj.forEach(asteriod => {
+    asteriodArr.forEach(asteriod => {
         if (!shipObj.isDestroyed && !shipObj.isInvulnerable && checkCollison(shipObj, asteriod)){
             shipObj.hits -= 1
             shipObj.isInvulnerable = true
+
+            damagetaken()
 
             if (healthBar.length > 0){
             let heart = healthBar.pop()
@@ -85,11 +74,8 @@ function shipVsAsteriod(){
     })
 }
 
-
-
-
 function shipVsObstacle(){
-obstacleobj.forEach(obstacle => {
+obstacleArr.forEach(obstacle => {
         if (!shipObj.isDestroyed && checkCollison(shipObj, obstacle)){
             
             shipObj.shipDestroyed()
@@ -102,21 +88,18 @@ obstacleobj.forEach(obstacle => {
     )
 }
 
-
 function lazerVsSteriod() {
-  lazerObj.forEach((lazer, lazerIndex) => {
-    asteriodObj.forEach((asteriod, asteriodIndex) => {
+  lazerArr.forEach((lazer, lazerIndex) => {
+    asteriodArr.forEach((asteriod, asteriodIndex) => {
       if (!asteriod.isDestroyed && checkCollison(lazer, asteriod)) {
         asteriod.destroy();
 
         lazer.node.remove();
-        lazerObj.splice(lazerIndex, 1);
+        lazerArr.splice(lazerIndex, 1);
       }
     });
   });
 }
-
-
 
 function shootLazer(){
     if (!shipObj)return
@@ -124,19 +107,23 @@ function shootLazer(){
     const positionY = shipObj.y + shipObj.h/4 
 
     const lazer = new Lazer(positionX, positionY)
-    lazerObj.push(lazer)
+    lazerArr.push(lazer)
     console.log(lazer.node)
 }
 
-// for bullet collsion get asteriod to turn in do display none then work out how to display explosion? 
-// or code the explosion into true/false in the asteriod Class builder
+function damagetaken(){
+    damageFlashNode.style.opacity = "0.5"
 
+    setTimeout(() => {
+        damageFlashNode.style.opacity = "0"
+    }, 100)
 
-
+}
 
 function startGame() {
     startScreenNode.style.display = "none"
     gameScreenNode.style.display = "flex"
+    gameOverScreen.style.display = "none"
 
     shipObj = new Ship()
 
@@ -146,17 +133,17 @@ function startGame() {
     heart.style.position = "absolute"
     heart.style.top = "10px"
     heart.style.left = `${10 + i * 30}px`
-    heart.style.width = "24px"
-    heart.style.height = "24px"
+    heart.style.width = "45px"
+    heart.style.height = "45px"
     heart.style.zIndex = "20"
-
-  gameBoxNode.append(heart)
-  healthBar.push(heart)
-}
-
-
     
-    setInterval(gameLoop, Math.round(1000/60))
+    gameBoxNode.append(heart)
+    healthBar.push(heart)
+}
+ 
+if (gameInterval) clearInterval(gameInterval);
+  gameInterval = setInterval(gameLoop, 1000 / 60);
+
 }
 
 function gameLoop(){
@@ -173,10 +160,10 @@ function gameLoop(){
 
         let bottomObstacle  = new Obstacle(randomObjY + 200 + gapSize, true)
 
-        obstacleobj.push(topObstacle)
-        obstacleobj.push(bottomObstacle)
+        obstacleArr.push(topObstacle)
+        obstacleArr.push(bottomObstacle)
     }
-    obstacleobj.forEach(objs => {
+    obstacleArr.forEach(objs => {
         objs.automaticMovement()
 
     });
@@ -189,9 +176,9 @@ function gameLoop(){
         
         let newPlanet = new Planet(randomPlanetY);
 
-        planetObj.push(newPlanet)
+        planetArr.push(newPlanet)
     }
-    planetObj.forEach(objs => {
+    planetArr.forEach(objs => {
         objs.automaticMovement()
 
     });
@@ -212,22 +199,22 @@ function gameLoop(){
         }
 
         if (spawnRandom === 1){
-            positionX = Math.random() * (600 * 0.7)
+            positionX = 400 + Math.random() * 200
             positionY = -100
             asteriod = new AsteriodMediumTop(positionX, positionY)
         }
 
         if (spawnRandom === 2){
-            positionX = Math.random() * (600 * 0.7)
+            positionX = 400 + Math.random() * 200
             positionY = 400 + 100
             asteriod = new AsteriodMediumBottom(positionX, positionY)
         }
         
-        asteriodObj.push(asteriod)
+        asteriodArr.push(asteriod)
         
 
     }
-    asteriodObj.forEach(obj => {
+    asteriodArr.forEach(obj => {
         obj.automaticMovement()
     })
 
@@ -245,35 +232,33 @@ function gameLoop(){
         }
 
         if (spawnRandom === 1){
-            positionX = Math.random() * (600 * 0.7)
+            positionX = 400 + Math.random() * 200
             positionY = -100
             asteriod = new AsteriodSmallTop(positionX, positionY)
         }
 
         if (spawnRandom === 2){
-            positionX = Math.random() * (600 * 0.7)
+            positionX = 400 + Math.random() * 200
             positionY = 400 + 100
             asteriod = new AsteriodSmallBottom(positionX, positionY)
         }
         
-        asteriodObj.push(asteriod)
+        asteriodArr.push(asteriod)
         
 
     }
-    asteriodObj.forEach(obj => {
+    asteriodArr.forEach(obj => {
         obj.automaticMovement()
     });
 
 
-    lazerObj.forEach(obj => {
+    lazerArr.forEach(obj => {
         obj.automaticMovement()
         });
 
     shipVsAsteriod()
     shipVsObstacle()
     lazerVsSteriod()
-
-
 
 }
 
@@ -289,33 +274,26 @@ function gameOver(){
 
 function restartGame() {
       shipObj = null
-      obstacleobj = []
-      asteriodObj = []
-      planetObj = []
-      lazerObj = []
+      obstacleArr = []
+      asteriodArr = []
+      planetArr = []
+      lazerArr = []
       frameCounter = 0
       gameBoxNode.innerHTML = null
       healthBar = []
 
-
-    //   const gameBoxNode = document.querySelector("#game-box")
+      clearInterval(gameInterval);
+      gameInterval = null;
 
 
       startGame()
 };
 
+// event listeners
 
-// Event listeners
-
-
-// startScreenNode.addEventListener("keydown", (event) => {
-//     if (event.key === " ") {
-//         startGame();
-//         }
-// }) try later the click works
 
 startBtnNode.addEventListener("click", startGame);
-//restartBtnNode.addEventListener("click", restartGame);
+restartBtnNode.addEventListener("click", restartGame);
 
 document.addEventListener("keydown", (event) =>{
     if (event.key === "ArrowUp"){
@@ -343,16 +321,3 @@ document.addEventListener("keydown", (event) =>{
         shootLazer()
     }
 })
-
-// add eventkey for R to restart state 
-restartBtnNode.addEventListener("click", restartGame);
-
-// document.addEventListener("keydown", (event) =>{
-//     if (event.key === "r"){
-//           restartGame()
-//      }
-// })
-
-document.addEventListener("keydown", (event) => {
-  console.log(event);
-});

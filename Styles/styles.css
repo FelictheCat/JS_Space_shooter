@@ -15,8 +15,7 @@ body {
   background-size: cover;
 
   width: 600px;
-  height: 400px;
-    
+  height: 400px; 
 }
 
 #game-box {
@@ -30,15 +29,25 @@ body {
 
     background-image: url(/Images/backGround.jpg);
     background-size: cover;
-
-
 }
 
 #game-box * {
-  pointer-events: none; /* prevents elements in the game-box to be dragged. This improves the user experience for click events on the game-box  */
+  pointer-events: none;
 }
 
 
 #game-screen, #game-over-screen {
   display: none;
+}
+
+#damageFlash{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: red;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 50;
 }

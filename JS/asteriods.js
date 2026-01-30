@@ -43,9 +43,7 @@ const explosionImage = [
         "./Images/Explosions/expl_11_0016.png",
         "./Images/Explosions/expl_11_0022.png",       
       ]
-
-
-      
+    
 class AsteriodMediumRight {
 
   constructor(positionX, positionY) {
@@ -67,7 +65,7 @@ class AsteriodMediumRight {
     this.node.style.width = `${this.w}px`
     this.node.style.height = `${this.h}px`
 
-    this.speed = 1.1
+    this.speed = 0.8
 
     this.node.style.zIndex = 3
   }
@@ -112,7 +110,7 @@ class AsteriodMediumTop {
     this.node.style.width = `${this.w}px`
     this.node.style.height = `${this.h}px`
 
-    this.speed = 1.1
+    this.speed = 0.8
 
     this.node.style.zIndex = 3
 
@@ -160,7 +158,7 @@ class AsteriodMediumBottom {
     this.node.style.width = `${this.w}px`
     this.node.style.height = `${this.h}px`
 
-    this.speed = 1.1
+    this.speed = 0.8
 
     this.node.style.zIndex = 3
 
@@ -188,8 +186,6 @@ automaticMovement() {
   }
 
 }
-
-
 
 class AsteriodSmallRight {
 
