@@ -11,7 +11,7 @@ body {
   align-items: center;
   margin: 50px;
 
-  background-image: url(/Images/backGround.jpg);
+  background-image: url(./Images/backGround.jpg);
   background-size: cover;
 
   width: 600px;
@@ -27,7 +27,7 @@ body {
     overflow: hidden;
     user-select: none;
 
-    background-image: url(/Images/backGround.jpg);
+    background-image: url(./Images/backGround.jpg);
     background-size: cover;
 }
 
