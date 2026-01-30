@@ -28,7 +28,7 @@ class Planet {
     this.node.src = planetImages[Math.floor(Math.random() * planetImages.length)]
     gameBoxNode.append(this.node)
 
-    this.x = 500
+    this.x = 600 + this.width
     this.y = positionY
     this.width = 50
     this.height = 50
