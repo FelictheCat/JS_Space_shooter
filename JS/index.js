@@ -208,7 +208,7 @@ function gameLoop(){
 
         if (spawnRandom === 0){
             positionX = 600 + 100
-            positionY = Math.random() * (600 * 0.3)
+            positionY = Math.random() * (400 * 0.3)
             asteriod = new AsteriodMediumRight(positionX, positionY)
         }
 
@@ -241,7 +241,7 @@ function gameLoop(){
 
         if (spawnRandom === 0){
             positionX = 600 + 100
-            positionY = Math.random() * (600 * 0.3)
+            positionY = Math.random() * (400 * 0.3)
             asteriod = new AsteriodSmallRight(positionX, positionY)
         }
 

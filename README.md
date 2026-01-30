@@ -31,6 +31,7 @@ Void Dash is a 2D space survival game where the player controls a spaceship and 
 - Sound effects and background music
 - Difficulty scaling over time
 - Power-ups (shield, faster lasers, extra health)
+- Extra Weapon types
 
 ---
 
