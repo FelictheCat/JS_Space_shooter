@@ -27,6 +27,7 @@ let obstacleobj = []
 let asteriodObj = [] //turn to array
 let planetObj = []
 let lazerObj = []
+let healthBar = []
 
 let frameCounter = 0
 
@@ -40,11 +41,18 @@ let frameCounter = 0
 
 
 function checkCollison(objA, objB){
+      if (objA.isDestroyed || objB.isDestroyed) {
+    return false;
+  }
+
+    const padA = 20
+    const padB = 10
+
     if(
-        objA.x < objB.x + objB.w &&
-        objA.x + objA.w > objB.x &&
-        objA.y < objB.y + objB.h &&
-        objA.y + objA.h > objB.y
+        objA.x + padA < objB.x + objB.w - padB &&
+        objA.x + objA.w - padA > objB.x + padB &&
+        objA.y + padA < objB.y + objB.h - padB &&
+        objA.y + objA.h - padA > objB.y + padB 
     ) {
     return true;
     }   else {
@@ -54,26 +62,58 @@ function checkCollison(objA, objB){
 
 function shipVsAsteriod(){
     asteriodObj.forEach(asteriod => {
-        if (checkCollison(shipObj, asteriod)){
-            gameOver()
+        if (!shipObj.isDestroyed && !shipObj.isInvulnerable && checkCollison(shipObj, asteriod)){
+            shipObj.hits -= 1
+            shipObj.isInvulnerable = true
+
+            if (healthBar.length > 0){
+            let heart = healthBar.pop()
+            heart.remove()
+            }
+            setTimeout(() => {
+                shipObj.isInvulnerable = false
+                        }, 500)
+
+            if(shipObj.hits <= 0){
+                shipObj.shipDestroyed()
+
+                setTimeout(() => {
+                    gameOver();
+                        }, 5000);
+            }
         }
     })
 }
+
+
 
 
 function shipVsObstacle(){
-    obstacleobj.forEach(obstacle =>{
-        if (checkCollison(shipObj, obstacle)){
-            gameOver()
+obstacleobj.forEach(obstacle => {
+        if (!shipObj.isDestroyed && checkCollison(shipObj, obstacle)){
+            
+            shipObj.shipDestroyed()
+
+                setTimeout(() => {
+                    gameOver();
+                        }, 3000);
+            }
         }
-    })
+    )
 }
 
-function lazerVsSteriod(){
-        asteriodObj.forEach(asteriod => {
-        if (checkCollison(lazerObj, asteriod)){
-        }
-    })
+
+function lazerVsSteriod() {
+  lazerObj.forEach((lazer, lazerIndex) => {
+    asteriodObj.forEach((asteriod, asteriodIndex) => {
+      if (!asteriod.isDestroyed && checkCollison(lazer, asteriod)) {
+        asteriod.destroy();
+
+        lazer.node.remove();
+        lazerObj.splice(lazerIndex, 1);
+      }
+    });
+  });
 }
 
 
@@ -81,7 +121,7 @@ function lazerVsSteriod(){
 function shootLazer(){
     if (!shipObj)return
     const positionX = shipObj.x + shipObj.w
-    const positionY = shipObj.y + shipObj.h/2  
+    const positionY = shipObj.y + shipObj.h/4 
 
     const lazer = new Lazer(positionX, positionY)
     lazerObj.push(lazer)
@@ -99,6 +139,22 @@ function startGame() {
     gameScreenNode.style.display = "flex"
 
     shipObj = new Ship()
+
+    for (let i = 0; i < 3; i++){
+    let heart = document.createElement("img")
+    heart.src = "./Images/heart.png" 
+    heart.style.position = "absolute"
+    heart.style.top = "10px"
+    heart.style.left = `${10 + i * 30}px`
+    heart.style.width = "24px"
+    heart.style.height = "24px"
+    heart.style.zIndex = "20"
+
+  gameBoxNode.append(heart)
+  healthBar.push(heart)
+}
+
+
     
     setInterval(gameLoop, Math.round(1000/60))
 }
@@ -107,7 +163,7 @@ function gameLoop(){
     frameCounter++
     // obs spawn
     if (frameCounter % 120 === 0){
-        let gapSize = 160
+        let gapSize = 250
         let minHeight = -120
         let maxHeight = 0
 
@@ -215,6 +271,7 @@ function gameLoop(){
 
     shipVsAsteriod()
     shipVsObstacle()
+    lazerVsSteriod()
 
 
 
@@ -238,6 +295,8 @@ function restartGame() {
       lazerObj = []
       frameCounter = 0
       gameBoxNode.innerHTML = null
+      healthBar = []
+
 
     //   const gameBoxNode = document.querySelector("#game-box")
 

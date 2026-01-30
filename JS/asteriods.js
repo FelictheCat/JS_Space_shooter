@@ -36,12 +36,22 @@ const asteriodsSmallImages = [
         "./Images/Asteroids/Small/a10015.png",
       ]
 
+const explosionImage = [
+        "./Images/Explosions/expl_10_0011.png",
+        "./Images/Explosions/expl_10_0018.png",
+        "./Images/Explosions/expl_10_0025.png",
+        "./Images/Explosions/expl_11_0016.png",
+        "./Images/Explosions/expl_11_0022.png",       
+      ]
 
 
       
 class AsteriodMediumRight {
 
   constructor(positionX, positionY) {
+    this.isDestroyed = false;
+
+
     this.node = document.createElement("img")
     this.node.src = asteriodsImages[Math.floor(Math.random() * asteriodsImages.length)]
     gameBoxNode.append(this.node)
@@ -60,8 +70,20 @@ class AsteriodMediumRight {
     this.speed = 1.1
 
     this.node.style.zIndex = 3
-
   }
+
+destroy(){
+    if (this.isDestroyed) return;
+    this.isDestroyed = true;
+
+    this.node.src = explosionImage[Math.floor(Math.random() * explosionImage.length)]
+    gameBoxNode.append(this.node)
+
+setTimeout(() => {
+  this.node.remove();
+}, 300);
+
+}
 
 automaticMovement() {
     this.x -= this.speed
@@ -73,6 +95,8 @@ automaticMovement() {
 class AsteriodMediumTop {
 
   constructor(positionX, positionY) {
+    this.isDestroyed = false;
+
     this.node = document.createElement("img")
     this.node.src = asteriodsImages[Math.floor(Math.random() * asteriodsImages.length)]
     gameBoxNode.append(this.node)
@@ -93,6 +117,19 @@ class AsteriodMediumTop {
     this.node.style.zIndex = 3
 
   }
+
+destroy(){
+    if (this.isDestroyed) return;
+    this.isDestroyed = true;
+
+    this.node.src = explosionImage[Math.floor(Math.random() * explosionImage.length)]
+    gameBoxNode.append(this.node)
+
+setTimeout(() => {
+  this.node.remove();
+}, 300);
+
+}
 
 automaticMovement() {
     this.x -= this.speed
@@ -106,6 +143,7 @@ automaticMovement() {
 class AsteriodMediumBottom {
 
   constructor(positionX, positionY) {
+    this.isDestroyed = false;
 
     this.node = document.createElement("img")
     this.node.src = asteriodsImages[Math.floor(Math.random() * asteriodsImages.length)]
@@ -127,6 +165,20 @@ class AsteriodMediumBottom {
     this.node.style.zIndex = 3
 
   }
+
+  destroy(){
+    if (this.isDestroyed) return;
+    this.isDestroyed = true;
+
+    this.node.src = explosionImage[Math.floor(Math.random() * explosionImage.length)]
+    gameBoxNode.append(this.node)
+
+setTimeout(() => {
+  this.node.remove();
+}, 300);
+
+}
+
 
 automaticMovement() {
     this.x -= this.speed
@@ -142,6 +194,8 @@ automaticMovement() {
 class AsteriodSmallRight {
 
   constructor(positionX, positionY) {
+    this.isDestroyed = false;
+
     this.node = document.createElement("img")
     this.node.src = asteriodsSmallImages[Math.floor(Math.random() * asteriodsSmallImages.length)]
     gameBoxNode.append(this.node)
@@ -162,6 +216,19 @@ class AsteriodSmallRight {
     this.node.style.zIndex = 4
 
   }
+
+  destroy(){
+    if (this.isDestroyed) return;
+    this.isDestroyed = true;
+
+    this.node.src = explosionImage[Math.floor(Math.random() * explosionImage.length)]
+    gameBoxNode.append(this.node)
+
+setTimeout(() => {
+  this.node.remove();
+}, 300);
+
+}
 
 automaticMovement() {
     this.x -= this.speed
@@ -173,6 +240,8 @@ automaticMovement() {
 class AsteriodSmallTop {
 
   constructor(positionX, positionY) {
+    this.isDestroyed = false;
+    
     this.node = document.createElement("img")
     this.node.src = asteriodsSmallImages[Math.floor(Math.random() * asteriodsSmallImages.length)]
     gameBoxNode.append(this.node)
@@ -193,6 +262,19 @@ class AsteriodSmallTop {
     this.node.style.zIndex = 4
 
   }
+
+  destroy(){
+    if (this.isDestroyed) return;
+    this.isDestroyed = true;
+
+    this.node.src = explosionImage[Math.floor(Math.random() * explosionImage.length)]
+    gameBoxNode.append(this.node)
+
+setTimeout(() => {
+  this.node.remove();
+}, 300);
+
+}
 
 automaticMovement() {
     this.x -= this.speed
@@ -206,6 +288,7 @@ automaticMovement() {
 class AsteriodSmallBottom {
 
   constructor(positionX, positionY) {
+    this.isDestroyed = false;
 
     this.node = document.createElement("img")
     this.node.src = asteriodsSmallImages[Math.floor(Math.random() * asteriodsSmallImages.length)]
@@ -227,6 +310,19 @@ class AsteriodSmallBottom {
     this.node.style.zIndex = 4
 
   }
+
+  destroy(){
+    if (this.isDestroyed) return;
+    this.isDestroyed = true;
+
+    this.node.src = explosionImage[Math.floor(Math.random() * explosionImage.length)]
+    gameBoxNode.append(this.node)
+
+setTimeout(() => {
+  this.node.remove();
+}, 300);
+
+}
 
 automaticMovement() {
     this.x -= this.speed

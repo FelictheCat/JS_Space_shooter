@@ -101,6 +101,7 @@ document.addEventListener("keydown", (event) =>{
 function lazerVsSteriod(){
         asteriodObj.forEach((asteriod, index) => {
         if (checkCollison(lazerObj, asteriod)){
+            asteriod.destroy()
         }
     })
 }
@@ -116,7 +117,8 @@ const explosionImage = [
 class AsteriodMediumRight {
 
   constructor(positionX, positionY) {
-    if (lazerVsSteriod() === false){
+    this.isDestroyed = false;
+
     this.node = document.createElement("img")
     this.node.src = asteriodsImages[Math.floor(Math.random() * asteriodsImages.length)]
     gameBoxNode.append(this.node)
@@ -136,17 +138,21 @@ class AsteriodMediumRight {
 
     this.node.style.zIndex = 3
 
-  } else{
-    this.node = document.createElement("img")
+  } 
+  
+  destroy(){
+    if (this.isDestroyed) return;
+    this.isDestroyed = true;
+
     this.node.src = explosionImage[Math.floor(Math.random() * explosionImage.length)]
     gameBoxNode.append(this.node)
 
     setTimeout(() => {
         removeObject(obj);
-            }, 3000);
+            }, 300);
 
 }
-}
+
 
 automaticMovement() {
     this.x -= this.speed

@@ -1,6 +1,13 @@
 class Ship{
 
     constructor(){
+
+    this.isDestroyed = false;
+    this.hits = 3
+    this.isInvulnerable = false
+
+
+
     this.node = document.createElement("img")
     this.node.src = "./Images/Fighter/topdownfighter.png"
 
@@ -20,6 +27,9 @@ class Ship{
     this.node.style.zIndex = 10
 
     this.movemet = 20
+
+    
+
     }
 
     flyUp(){
@@ -49,4 +59,13 @@ class Ship{
         this.node.style.left = `${this.x}px`
         }
     }
+
+
+    shipDestroyed(){
+        this.isDestroyed = true
+        this.node.src = explosionImage[Math.floor(Math.random() * explosionImage.length)]
+        gameBoxNode.append(this.node)
+
+    }
+
 }

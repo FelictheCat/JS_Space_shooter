@@ -14,8 +14,8 @@ class Obstacle {
 
     this.x = 600;
     this.y = positionY;
-    this.w = 40;
-    this.h = 200;
+    this.w = 100;
+    this.h = 250;
     this.speed = 1.4;
 
     this.node.style.width = `${this.w}px`;
