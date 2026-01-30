@@ -65,7 +65,7 @@ function shipVsAsteriod(){
             }
             setTimeout(() => {
                 shipObj.isInvulnerable = false
-                        }, 500)
+                        }, 600)
 
             if(shipObj.hits <= 0){
                 shipObj.shipDestroyed()

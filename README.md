@@ -2,7 +2,7 @@
 
 ## [Play the Game!](https://felicthecat.github.io/JS_Space_shooter/)
 
-![Game Logo](www.your-image-logo-here.com)
+![Game Logo](../Images/voidDash.png)
 
 ---
 
