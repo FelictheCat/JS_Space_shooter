@@ -15,7 +15,7 @@ class Ship{
 
     this.x = 100
     this.y = 300
-    this.w = 40
+    this.w = 80
     this.h = 35
 
     this.node.style.position = "absolute"
