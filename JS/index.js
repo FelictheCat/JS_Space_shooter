@@ -20,6 +20,10 @@ let planetArr = []
 let lazerArr = []
 let healthBar = []
 
+let canFire = true
+let lazerCooldown = 200
+
+
 let frameCounter = 0
 
 let gameInterval = null;
@@ -103,12 +107,22 @@ function lazerVsSteriod() {
 
 function shootLazer(){
     if (!shipObj)return
+    if (!canFire)return
+
+    canFire = false
+
     const positionX = shipObj.x + shipObj.w
     const positionY = shipObj.y + shipObj.h/4 
 
     const lazer = new Lazer(positionX, positionY)
     lazerArr.push(lazer)
-    console.log(lazer.node)
+    
+    setTimeout(() => {
+        canFire = true
+    }, lazerCooldown);
+
+
+
 }
 
 function damagetaken(){
